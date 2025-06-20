@@ -1,13 +1,6 @@
 r"""
- __         __
-/  \.-'''-./  \
-\    -   -    /
- |   o   o   |
- \  .-'''-.  /
-  '-\__Y__/-'
-     `---`
 
-@author: SR
+@author: arjun.krishna4706@gmail.com
 """
 
 from ollama import chat
