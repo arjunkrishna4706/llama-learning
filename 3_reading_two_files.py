@@ -1,13 +1,6 @@
 r"""
- __         __
-/  \.-'''-./  \
-\    -   -    /
- |   o   o   |
- \  .-'''-.  /
-  '-\__Y__/-'
-     `---`
-
-@author: SR
+@author: arjun.krishna4706@gmail.com
+#this script takes two text files and a prompt file and generates llama responses for the prompts based on the input files.
 """
 from ollama import Client
 import os
