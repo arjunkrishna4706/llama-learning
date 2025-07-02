@@ -1,0 +1,38 @@
+
+#@author: arjun.krishna4706@gmail.com
+#Topic Tagging: Identify topics like earnings, M&A, lawsuits, executive changes, rating changes, etc.
+
+import pandas as pd
+import re
+
+# Load CSV file
+df = pd.read_csv("dow-jones-headlines-2013-05.csv")
+
+# Function to assign topics based on keywords
+def assign_topic(headline):
+    headline = headline.lower()
+
+    if re.search(r'\bearnings\b|\bprofit\b|\bq[1-4]\b|\bquarter\b|\bfiscal\b', headline):
+        return 'Earnings'
+    elif re.search(r'\bacquire\b|\bacquisition\b|\bmerger\b|\bm&a\b|\btakeover\b|\bdeal\b', headline):
+        return 'M&A'
+    elif re.search(r'\blawsuit\b|\bsue\b|\blitigation\b|\bsettle\b|\blegal action\b', headline):
+        return 'Lawsuit'
+    elif re.search(r'\bceo\b|\bexecutive\b|\bresign\b|\bsteps down\b|\bappoint\b|\bboard\b', headline):
+        return 'Executive Change'
+    elif re.search(r'\bipo\b|\binitial public offering\b', headline):
+        return 'IPO'
+    elif re.search(r'\bdividend\b|\bbuyback\b|\bshare repurchase\b|\bpayout\b', headline):
+        return 'Capital Return'
+    elif re.search(r'\bguidance\b|\bforecast\b|\boutlook\b', headline):
+        return 'Guidance'
+    elif re.search(r'\brating\b|\bdowngrade\b|\bupgrade\b|\bs&p\b|\bmoody\'s\b|\bfitch\b', headline):
+        return 'Rating Change'
+    else:
+        return 'Other'
+# Apply the topic assignment
+df['topic'] = df['headline'].apply(assign_topic)
+
+# Save to new CSV file
+df.to_csv("dow-jones-headlines-with-topics.csv", index=False)
+print("Topic tagging complete. Output saved to 'dow-jones-headlines-with-topics.csv'")
